@@ -154,7 +154,9 @@ jobs:
             - bench-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
       - run:
           name: Run benchmarks
-          command: make bench
+          command: |
+            rustup default nightly
+            make bench
       - save_cache:
           key: bench-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
           paths:
